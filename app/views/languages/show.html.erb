@@ -1,0 +1,13 @@
+<h2>The 100 most common words in <%= @language.name %></h2>
+
+<a href="#">Test me!</a> <!-- Should link to a new page that tests answers -->
+<ol>
+<% @language.words.each do |word| %>
+<li>
+<%= word.word %>
+<%#= link_to word.word, word.translate(@language.language_code, "en"), :remote => true %>
+<%#= word.translate("es","en") %>
+
+</li>
+<% end %>
+</ol>

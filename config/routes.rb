@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'languages/' => "languages#index"
+  get 'languages/:id' => "languages#show", :as => "show"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
