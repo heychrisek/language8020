@@ -10,5 +10,16 @@
 <%= render "layouts/header" %>
 <%= yield %>
 <%= javascript_include_tag 'application' %>
+<script type="text/javascript">
+    $(function () {
+        $('body').popover({
+            selector: '[data-toggle="popover"]'
+        });
+
+        $('body').tooltip({
+            selector: 'a[rel="tooltip"], [data-toggle="tooltip"]'
+        });
+    });
+</script>
 </body>
 </html>

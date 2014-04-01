@@ -1,6 +1,9 @@
 class Word < ActiveRecord::Base
   belongs_to :language
 
+  def translation
+    "translation"
+  end
   # def translate(original_lang, translation_lang)
   #   google_url = "http://translate.google.com/translate_a/t?client=t&sl="
     
