@@ -15,7 +15,7 @@ class Word < ActiveRecord::Base
       begin
         return_string = translate_hash[0][0][0]
       rescue
-        return_string = "N/A"
+        return_string = "N/A" + translate_hash.inspect
       end
     end
     
