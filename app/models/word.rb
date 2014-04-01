@@ -9,7 +9,11 @@ class Word < ActiveRecord::Base
       translations = translate_hash[1][0][1]
       return_string = translations.join("<br>")
     rescue
-      return_string = translate_hash[0][0][0]
+      begin
+        return_string = translate_hash[0][0][0]
+      rescue
+        "N/A"
+      end
     end
     
     return_string ||= "translation not found"

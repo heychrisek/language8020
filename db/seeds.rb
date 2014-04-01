@@ -17,11 +17,13 @@ end
   "German" => "de",
   "Hebrew" => "he",
   "Italian" => "it",
+  "Japanese" => "ja",
+  "Korean" => "ko",
   "Portuguese" => "pt",
   "Russian" => "ru",
   "Spanish" => "es",
-  "Korean" => "ko",
-  "Japanese" => "ja",
+  
+
 
 }.each do |language_name, code|
   language = Language.find_by(name: language_name).update(language_code: code)

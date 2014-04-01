@@ -19,3 +19,9 @@ QUESTIONS
   7. Censor or include crude words (since they're from subtitles)
   8. How many words to max out at?
   9. Other/"better" sources for word lists? Easy to implement, can research other sources.
+
+
+To-dos
+  - game-ify
+  - background photos theme
+  - ajaxify
