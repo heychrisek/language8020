@@ -6,7 +6,8 @@
   <ol start="<%= @first_word_number %>">
     <% @words.each do |word| %>
       <li>
-        <%= word.word %>
+        <%= word.word %> |
+        <%= raw(word.translation) %>
       </li>
     <% end %>
   </ol>
