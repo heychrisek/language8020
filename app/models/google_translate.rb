@@ -75,8 +75,9 @@ class GoogleTranslate
     request.set_form_data(text: text)
     puts request
     
-    http.request(request)
     puts "--IT ENDED HERE----"
+    http.request(request)
+
   end
 
   def collect_languages buffer, index, tag_name, tag_id

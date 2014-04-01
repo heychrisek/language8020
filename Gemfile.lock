@@ -66,9 +66,6 @@ GEM
       railties (>= 3.0.0)
     ffi (1.9.3)
     google-analytics-rails (0.0.5)
-    google-translate (1.0.1)
-      json_pure
-      thor
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (2.0.5)
@@ -78,7 +75,6 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
-    json_pure (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -195,7 +191,6 @@ DEPENDENCIES
   database_cleaner
   factory_girl_rails
   google-analytics-rails
-  google-translate
   jbuilder (~> 2.0)
   jquery-rails
   pg
