@@ -1,0 +1,15 @@
+<div class="display-words">
+  <h2>The most common words in <%= @language.name %> (<%= @first_word_number %> - <%= @last_word_number %>)</h2>
+  
+  <p>Currently on page <%= @page + 1 %></p>
+
+  <ol>
+    <% @words.each do |word| %>
+      <li>
+        <%= word.word %>
+      </li>
+    <% end %>
+  </ol>
+  
+  <a href="#">Next page</a>
+</div>
