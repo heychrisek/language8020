@@ -3,9 +3,9 @@ class Word < ActiveRecord::Base
 
   def translation
     word_name = self.word
-    
+    lang_from = self.language.language_code
     begin
-      translate_hash = GoogleTranslate.new.translate("en","fr", word_name)
+      translate_hash = GoogleTranslate.new.translate(lang_from, "en", word_name)
       translations = translate_hash[1][0][1]
       return_string = translations.join("<br>")
     rescue

@@ -3,11 +3,10 @@
   
   <p>Currently on page <%= @page + 1 %></p>
 
-  <ol start="<%= @first_word_number %>">
+  <ol class="word-list" start="<%= @first_word_number %>">
     <% @words.each do |word| %>
       <li>
-        <%= word.word %> |
-        <%= raw(word.translation) %>
+        <span data-toggle="tooltip" data-placement="right" data-html="true" data-original-title="<%= raw(word.translation) %>"><%= word.word %></span>
       </li>
     <% end %>
   </ol>
