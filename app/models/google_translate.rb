@@ -64,16 +64,16 @@ class GoogleTranslate
 
   def call_service url, text=nil
     uri = URI.parse(URI.escape(url))
-    binding.pry
+    # binding.pry
 
     http = Net::HTTP.new(uri.host, uri.port)
-    binding.pry
+    # binding.pry
 
     request = Net::HTTP::Post.new(uri.request_uri)
-    binding.pry
+    # binding.pry
     
     request.set_form_data(text: text)
-    binding.pry
+    # binding.pry
     
     http.request(request)
 
