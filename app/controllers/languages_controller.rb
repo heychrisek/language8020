@@ -14,6 +14,10 @@ class LanguagesController < ApplicationController
     end
   end
 
+  def choose_language
+    redirect_to "/languages/#{params[:language]}?per_page=#{params[:per_page]}"
+  end
+
   private
     def get_set_of_words
       params[:page] ||= 0

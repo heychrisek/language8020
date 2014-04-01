@@ -10,8 +10,8 @@
 
 <h5>Select a language below to get started</h5>
 
-<ul>
-<% @languages.each do |language| %>
-<li><%= link_to language.name, language %></li>
+<%= form_tag "/languages/select", method: 'get' do %>
+  <%= select_tag "language", options_from_collection_for_select(@languages, "id", "name"), prompt: "Choose a language to study..." %>
+  <%= select_tag "per_page", options_for_select([ "10", "20", "25", "40", "50", "100" ]), prompt: "Display per page" %>
+  <%= submit_tag "Show me the words!" %>
 <% end %>
-<ul>
