@@ -20,7 +20,9 @@ end
   "Portuguese" => "pt",
   "Russian" => "ru",
   "Spanish" => "es",
-  "Korean" => "ko"
+  "Korean" => "ko",
+  "Japanese" => "ja",
+
 }.each do |language_name, code|
   language = Language.find_by(name: language_name).update(language_code: code)
 end
