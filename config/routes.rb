@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
-  get 'languages/' => "languages#index"
-  get 'languages/:id' => "languages#show", :as => "show"
+  resources :languages, only: [:index, :show]
+  # get 'languages/' => "languages#index"
+  # get 'languages/:id' => "languages#show", :as => "show"
   get 'languages/:id/words' => "languages#get_words", :as => "get_words"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'languages#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
