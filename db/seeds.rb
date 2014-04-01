@@ -28,3 +28,7 @@ end
 }.each do |language_name, code|
   language = Language.find_by(name: language_name).update(language_code: code)
 end
+
+Word.all.each do |word|
+  word.update(:translation => word.translation)
+end
