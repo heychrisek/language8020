@@ -1,13 +1,11 @@
 class ChangeLanguageIdToReference < ActiveRecord::Migration
   def up
-    change_table :words do |t|
-      t.change :language_id, :reference
-    end
+    remove_column :words, :language_id
+    add_reference :words, :language
   end
 
   def down
-    change_table :words do |t|
-      t.change :language_id, :integer
-    end
+    remove_column :words, :language
+    add_column :words, :language_id, :integer
   end
 end
