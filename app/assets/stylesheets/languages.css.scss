@@ -1,6 +1,14 @@
 // Place all the styles related to the languages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .tooltip-inner {
   white-space: pre-wrap;
+}
+
+.words-container {
+  columns: 200px 2;
+  -webkit-columns: 200px 2;
+  -moz-columns: 200px 2;
+
 }

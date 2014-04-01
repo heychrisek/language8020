@@ -12,6 +12,8 @@
 
 <%= form_tag "/languages/select", method: 'get' do %>
   <%= select_tag "language", options_from_collection_for_select(@languages, "id", "name"), prompt: "Choose a language to study..." %>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <%= select_tag "per_page", options_for_select([ "10", "20", "25", "40", "50", "100" ]), prompt: "Display per page" %>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <%= submit_tag "Show me the words!" %>
 <% end %>
