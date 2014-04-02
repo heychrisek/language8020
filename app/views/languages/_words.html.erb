@@ -1,4 +1,4 @@
-<div class="display-words">
+<div class="display-words" data-pjax-container>
   <h2>The most common words in <%= @language.name %> (<%= @first_word_number %> - <%= @last_word_number %>)</h2>
   
   <p>Currently on page <%= @page + 1 %></p>
@@ -13,9 +13,9 @@
     </ol>
   </div>
   <% if @page > 0 %>
-    <a class="previous-link" href="<%= "/languages/#{@language.id}?page=#{@page - 1}&per_page=#{@per_page}" %>">Previous page</a>
+    <a class="previous-link" href="<%= "/languages/#{@language.id}?page=#{@page - 1}&per_page=#{@per_page}" %>" data-pjax>Previous page</a>
   <% end %>
   <% if @page * @per_page + @per_page < 1000 %>
-    <a class="next-link" href="<%= "/languages/#{@language.id}?page=#{@page + 1}&per_page=#{@per_page}" %>">Next page</a>
+    <a class="next-link" href="<%= "/languages/#{@language.id}?page=#{@page + 1}&per_page=#{@per_page}" %>" data-pjax>Next page</a>
   <% end %>
 </div>

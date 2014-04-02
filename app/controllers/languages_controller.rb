@@ -6,14 +6,7 @@ class LanguagesController < ApplicationController
 
   def show
     get_set_of_words
-  end
-
-  def get_words
-    get_set_of_words
-    respond_to do |format|
-      format.js
-      format.html {render 'get_words.js.erb'}
-    end
+    render layout: false if request.headers['X-PJAX']
   end
 
   def choose_language
