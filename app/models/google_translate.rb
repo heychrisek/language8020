@@ -64,18 +64,9 @@ class GoogleTranslate
 
   def call_service url, text=nil
     uri = URI.parse(URI.escape(url))
-    puts uri
-
     http = Net::HTTP.new(uri.host, uri.port)
-    puts http
-
     request = Net::HTTP::Post.new(uri.request_uri)
-    puts request
-    
     request.set_form_data(text: text)
-    puts request
-    
-    puts "--IT ENDED HERE----"
     http.request(request)
 
   end
