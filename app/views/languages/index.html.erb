@@ -1,19 +1,8 @@
-<p>
-  Experts in both <a href="http://www.fluentin3months.com/80-20-rule/">language learning</a> and <a href="http://www.fourhourworkweek.com/blog/2009/01/20/learning-language/">workflow efficiency</a> apply the Pareto principle, or the 80-20 rule, to learning a foreign language. That principle states that roughly 80% of outcomes result from only 20% of the inputs.
-</p>
-<p>
-  <a href="www.oxforddictionaries.com/us/words/the-oec-facts-about-the-language">Oxford Dictionaries</a> estimates that just 10 different lemmas, or basic word forms, account for 25% of English language content. That figure jumps to 50% at 100 words and 75% at 1000. So why focus on complicated grammar and vocabulary when so few words comprise so much of our everyday communication?
-</p>
-<p>
-  This site displays the most common words in X languages, as gathered from sources like <a href="http://www.opensubtitles.org/">Open SubTitles</a> and <a href="https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists">Wiktionary frequency lists</a>. Users can test their knowledge of essential vocabulary by hovering over each word for the Google Translation to English.
-</p>
-
 <h5>Select a language below to get started</h5>
-
 <%= form_tag "/languages/select", method: 'get' do %>
-  <%= select_tag "language", options_from_collection_for_select(@languages, "id", "name"), prompt: "Choose a language to study..." %>
+  <%= select_tag "language", options_from_collection_for_select(@languages, "language_code", "name"), prompt: "Choose a language to study", id: "language-dropdown" %>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= select_tag "per_page", options_for_select([ "10", "20", "25", "40", "50", "100" ]), prompt: "Display per page" %>
+  <%= select_tag "per_page", options_for_select([ "10", "25", "50", "100" ]), prompt: "Per page", id: "page-dropdown" %>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= submit_tag "Show me the words!" %>
-<% end %>
+  <button type="submit" class="btn btn-default">Show me the words!</button>
+<% end %> 

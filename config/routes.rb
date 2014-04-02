@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'languages/select' => "languages#choose_language", as: "choose_language"
   resources :languages, only: [:index, :show]
   get 'languages/:id/words' => "languages#get_words", as: "get_words"
-
+  get 'about' => "application#about"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
