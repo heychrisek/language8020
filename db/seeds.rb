@@ -29,6 +29,9 @@ end
   language = Language.find_by(name: language_name).update(language_code: code)
 end
 
-Word.all.each do |word|
+
+# To seed the translations of each word (remember to uncomment word.rb translation method)
+(5348..13954).each do |i|
+  word = Word.find(i)
   word.update(:translation => word.translation)
 end
