@@ -1,6 +1,7 @@
 class LanguagesController < ApplicationController
   def index
     @languages = Language.all
+    @language = Language.all.sample
   end
 
   def show
@@ -18,6 +19,11 @@ class LanguagesController < ApplicationController
   def choose_language
     language_id = Language.find_by(language_code: params[:language]).id
     redirect_to "/languages/#{language_id}?per_page=#{params[:per_page]}"
+  end
+
+  def random
+    language_id = Language.all.sample.id
+    redirect_to "/languages/#{language_id}?per_page=10"
   end
 
   private

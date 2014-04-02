@@ -1,8 +1,20 @@
+<div>
 <h5>Select a language below to get started</h5>
+
 <%= form_tag "/languages/select", method: 'get' do %>
+
   <%= select_tag "language", options_from_collection_for_select(@languages, "language_code", "name"), prompt: "Choose a language to study", id: "language-dropdown" %>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
   <%= select_tag "per_page", options_for_select([ "10", "25", "50", "100" ]), prompt: "Per page", id: "page-dropdown" %>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
   <button type="submit" class="btn btn-default">Show me the words!</button>
 <% end %> 
+</div>
+
+<div>
+  <%= form_tag "languages/random", method: 'get' do %>
+    <button type="submit" class="btn btn-default"><h4>I'm feeling lucky!</h4><br>(Random words in a random language)</button>
+  <% end %>
+</div>

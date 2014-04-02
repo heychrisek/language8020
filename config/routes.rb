@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'languages/select' => "languages#choose_language", as: "choose_language"
+  get 'languages/random' => "languages#random", as: "random"
   resources :languages, only: [:index, :show]
   get 'languages/:id/words' => "languages#get_words", as: "get_words"
   get 'about' => "application#about"
