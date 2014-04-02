@@ -11,6 +11,7 @@ class LanguagesController < ApplicationController
     get_set_of_words
     respond_to do |format|
       format.js
+      format.html {render 'get_words.js.erb'}
     end
   end
 

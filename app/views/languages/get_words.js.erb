@@ -1,4 +1,3 @@
-var getWords = $('
-  <%= render partial: "words" %>
-');
-console.log("hello");
+var perPage = <%= @per_page %>;
+var page = <%= @page %>;
+var divString = "<%= j(render partial: "words") %>";

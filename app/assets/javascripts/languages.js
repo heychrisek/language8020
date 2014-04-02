@@ -1,11 +1,3 @@
-// $.getScript( languageID + "/words", function( data, textStatus, jqxhr ) {
-//   console.log( data ); // Data returned
-//   console.log( textStatus ); // Success
-//   console.log( jqxhr.status ); // 200
-//   console.log( "Load was performed." );
-// });
-
-
 $(function () {
     $('body').popover({
         selector: '[data-toggle="popover"]'
@@ -28,8 +20,27 @@ $(function () {
     });
     
     $("#page-dropdown").select2();
+});
 
+// Allow browsing words without refreshing the page
 
+var paginate = function(id, page, perPage, callback) {
+    $.getScript( "/languages/" + id + "/words?page=" + page + "&per_page=" + perPage, callback);
+};
 
+var bindNextAndPreviousLinks = function(){
+    $('body').on('click', '.next-link', function(e){
+        e.stopPropagation();
+        e.preventDefault();
+        paginate(languageID, page + 1, perPage, function(){$('.display-words').html(divString)});
+    })
+    $('body').on('click', '.previous-link', function(e){
+        e.stopPropagation();
+        e.preventDefault();
+        paginate(languageID, page - 1, perPage, function(){$('.display-words').html(divString)});
+    })
+};
 
+$(document).ready(function(){
+    bindNextAndPreviousLinks();
 });

@@ -20,7 +20,12 @@ ActiveRecord::Schema.define(version: 20140401212210) do
     t.datetime "updated_at"
   end
 
-# Could not dump table "words" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "words", force: true do |t|
+    t.string   "word"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "language_id"
+    t.string   "translation"
+  end
 
 end
