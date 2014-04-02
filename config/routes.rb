@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get 'languages/random' => "languages#random", as: "random"
   resources :languages, only: [:index, :show]
   get 'languages/:id/words' => "languages#get_words", as: "get_words"
-  get 'about' => "application#about"
+
+  get 'about' => "welcome#about"
+  get 'team' => "welcome#team"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
