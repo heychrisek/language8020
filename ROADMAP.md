@@ -1,9 +1,10 @@
 MINIMUM VIABLE/LOVEABLE PRODUCT
-  1. Seed database with languages/words
-  2. Controllers/views - what do we see, what's the user flow?
-  3. Enable manipulation of word views (see X random words, top Y words, etc.)
-  4. See translations of words (ajax? hover over word for translation?)
-  5. Others?
+
+in-progress   1. Seed database with languages/words
+X             2. Controllers/views - what do we see, what's the user flow?
+in-progress   3. Enable manipulation of word views (see X random words, top Y words, etc.)
+in-progress   4. See translations of words (ajax? hover over word for translation?)
+              5. Others? - front end, theme, etc.
 
 FUN FEATURES
   6. Extra features. Possibilities to consider/discuss/learn from:

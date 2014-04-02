@@ -15,8 +15,21 @@ $(function () {
         selector: 'a[rel="tooltip"], [data-toggle="tooltip"]'
     });
 
-    $("#language-dropdown").select2();
+    function format(language) {
+        if (language.text === "Choose a language to study") return language.text;
+        return '<img src="/assets/flags/' + language.id + '.png"> ' + language.text;
+        // return "<img src='/assets/flags/ad.png'>"
+    }
+
+    $("#language-dropdown").select2({
+        formatResult: format,
+        formatSelection: format,
+        escapeMarkup: function(m) { return m; }
+    });
     
     $("#page-dropdown").select2();
+
+
+
 
 });

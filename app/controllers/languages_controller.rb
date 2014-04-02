@@ -15,7 +15,8 @@ class LanguagesController < ApplicationController
   end
 
   def choose_language
-    redirect_to "/languages/#{params[:language]}?per_page=#{params[:per_page]}"
+    language_id = Language.find_by(language_code: params[:language]).id
+    redirect_to "/languages/#{language_id}?per_page=#{params[:per_page]}"
   end
 
   private
