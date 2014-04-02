@@ -22,7 +22,11 @@ $(function () {
     $("#page-dropdown").select2();
 });
 
+var pjaxSetup = function(){
+    $.pjax.defaults.scrollTo = false;
+    $(document).pjax('a[data-pjax]', '[data-pjax-container]', {timeout: 2000});
+}
 
 $(document).ready(function(){
-  $(document).pjax('a[data-pjax]', '[data-pjax-container]', {timeout: 2000});
+    pjaxSetup();
 });
