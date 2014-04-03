@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.pjax
+//= require raphael
 //= require bootstrap
 //= require select2
 //= require_tree .
