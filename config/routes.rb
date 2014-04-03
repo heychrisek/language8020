@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'languages/random' => "languages#random", as: "random"
   resources :languages, only: [:index, :show]
   get 'languages/:id/words' => "languages#get_words", as: "get_words"
+  get 'game' => "languages#game", as: "game"
 
   get 'about' => "welcome#about"
   get 'team' => "welcome#team"
