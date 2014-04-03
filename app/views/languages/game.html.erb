@@ -1,2 +1,19 @@
-the game
-<%= javascript_include_tag 'game' %>
+<div id="game" class="container-fluid">
+  <h2>Test your knowledge!</h2>
+  <hr>
+  <div id="game-options" class="col-xs-12 col-sm-3" style="padding-right:20px; border-right: 1px solid #ccc;">
+    <%= select_tag "language",
+      options_from_collection_for_select(@languages, "language_code", "name"),
+      prompt: "Choose a language", id: "language-dropdown",
+      class: "col-xs-12 col-sm-9" %>
+    <hr>
+    Test me on the top <%= select_tag "words", options_for_select([50, 100, 200, 500], 200), id: "num-words" %> words!
+    <hr>
+    <div class="text-center">
+      <button id="game-start-button" type="button" class="btn btn-primary btn-lg disabled">START!</button>
+    </div>
+  </div>
+  <div id="game-play" class="col-xs-12 col-sm-9">
+    hello world
+  </div>
+</div>
