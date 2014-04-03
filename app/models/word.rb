@@ -3,6 +3,7 @@ class Word < ActiveRecord::Base
 
   # def translation
   #   "a translation"
+  # "a translation<br>other"
   #   # word_name = self.word
   #   # lang_from = self.language.language_code
   #   # begin
@@ -16,7 +17,6 @@ class Word < ActiveRecord::Base
   #   #     return_string = "N/A"
   #   #   end
   #   # end
-    
   #   # return_string ||= "translation not found"
   # end
 
