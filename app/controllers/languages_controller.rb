@@ -19,6 +19,9 @@ class LanguagesController < ApplicationController
     redirect_to "/languages/#{language_id}?per_page=10"
   end
 
+  def game
+  end
+
   private
     def get_set_of_words
       params[:page] ||= 0
