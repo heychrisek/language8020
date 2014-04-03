@@ -23,7 +23,30 @@
 }
 
 .display-words {
-  background-color: rgba(166,153,163,0.3);
+  background-color: rgba(166,153,163,0.4);
   padding: 40px;
-  border-radius:50px;
+  border-radius: 50px;
+}
+
+#previous-btn{
+  font-size: 20px;
+  width: 20%;
+}
+
+#next-btn{
+  float: right;
+  width: 20%;
+  font-size: 20px;
+}
+
+li {
+  margin-left: 10px
+}
+
+#page-num{
+  float: right;
+}
+
+.nav-buttons {
+  margin-bottom: 20px;
 }

@@ -1,7 +1,7 @@
 <!-- Necessary for theme -->
 <div id="outer-background-container" 
-      data-default-background-img="/assets/background/<%= @language.name.downcase %>_<%= @page %>.jpg"
-      style="background-image:url(/assets/background/<%= @language.name.downcase %>_<%= @page %>.jpg); display: none;">
+      data-default-background-img="/assets/background/<%= @language.name.downcase %>_<%= @page % 5 %>.jpg"
+      style="background-image:url(/assets/background/<%= @language.name.downcase %>_<%= @page % 5%>.jpg); display: none;">
 </div>
 
 <script type="text/javascript">
@@ -10,10 +10,8 @@
 
 
   <div class="display-words">
+    <p id="page-num">Page <%= @page + 1 %>/<%= 500/@per_page %></p>
     <h2>The most common words in <%= @language.name %> (<%= @first_word_number %> - <%= @last_word_number %>)</h2>
-    
-    <p>Currently on page <%= @page + 1 %></p>
-
     <div class="words-container">
       <ol class="word-list" start="<%= @first_word_number %>">
         <% @words.each do |word| %>
@@ -24,10 +22,12 @@
       </ol>
     </div>
 
-    <% if @page > 0 %>
-      <button class="btn btn-primary"><a class="previous-link" href="<%= "/languages/#{@language.id}?page=#{@page - 1}&per_page=#{@per_page}" %>" data-pjax>Previous page</a></button>
-    <% end %>
-    <% if @page * @per_page + @per_page < 1000 %>
-      <button class="btn btn-primary"><a class="next-link" href="<%= "/languages/#{@language.id}?page=#{@page + 1}&per_page=#{@per_page}" %>" data-pjax>Next page</a></button>
-    <% end %>
+    <div class="nav-buttons">
+      <% if @page > 0 %>
+        <button id="previous-btn" class="btn btn-primary"><a class="previous-link" href="<%= "/languages/#{@language.id}?page=#{@page - 1}&per_page=#{@per_page}" %>" data-pjax>Previous</a></button>
+      <% end %>
+      <% if @page * @per_page + @per_page < 1000 %>
+        <button id="next-btn" class="btn btn-primary"><a class="next-link" href="<%= "/languages/#{@language.id}?page=#{@page + 1}&per_page=#{@per_page}" %>" data-pjax>Next</a></button>
+      <% end %>
+    </div>
   </div>
