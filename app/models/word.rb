@@ -2,7 +2,7 @@ class Word < ActiveRecord::Base
   belongs_to :language
 
   def translation
-    "a translation"
+    "a translation<br>other"
     # word_name = self.word
     # lang_from = self.language.language_code
     # begin

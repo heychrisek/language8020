@@ -16,7 +16,7 @@ var drawClock = function(){
   }    
   second_hand = canvas.path("M100 110L100 25");
   second_hand.attr({stroke: "#444444", "stroke-width": 2});
-  resetClock();
+  pointClockHandUp();
   updateClock();
 };
 
@@ -35,18 +35,24 @@ var updateClock = function(){
 
 var stopClock = function(){
   clearInterval(clockUpdaterID);
-  $(document).trigger("clockEnd");
+  $("#game").trigger("clockEnd");
   prepareToStopClock = false;
 };
 
-var resetClock = function(){
+var pointClockHandUp = function(){
   startTime = new Date().getSeconds();
   prepareToStopClock = false;
 };
 
+var resetClock = function(){
+  stopClock();
+  pointClockHandUp();
+  updateClock();
+}
+
 var restartClock = function(){
   stopClock();
-  resetClock();
+  pointClockHandUp();
   updateClock();
   clockUpdaterID = setInterval("updateClock()",1000);
 };
@@ -66,12 +72,15 @@ var checkReady = function(){
   }
 };
 
-var Word = function(text, translation){
+var Word = function(text, translations){
   this.text = text;
-  this.translation = translation;
+  this.translations = $.map(translations.split("<br>"), function(translation){
+    return translation.toLowerCase();
+  });
 };
 
 var failureToLoad = function() {
+  $("#game-play").slideUp();
   alert("I can't fetch the words for your game.\n" +
         "Are you connected to the internet?");
 };
@@ -88,30 +97,40 @@ var getWordData = function(callback){
 
 // PLAYING THE GAME
 var points = 0;
-var currentWord = new Word;
+var currentWord = new Object;
 var usedWords = [];
 
 var showMessage = function(message){
   $("#game-alerts").text(message);
 }
 
-var setupGameEnd = function(){
-  var gameEnd = function(){
-    $("#game").off("keyup.testWord");
-    showMessage("You got " + points + " points! (press SPACE to dismiss this message)");
-    $("#game").on("keyup.dismiss", "#translation-field", function(e){
-      $("#translation-field").val('');
-      if (e.which == 32) {
-        e.preventDefault();
-        $(document).off("keyup.dismiss");
-        playGame();
-      }
-    });
-    if (points > 0) {
-      $("#game-alerts").removeClass("bg-danger").addClass("bg-success");
+var clearUp = function(){
+  $("#game").off("keyup.dismiss");
+  $("#game").off("clockEnd");
+  $("#game").off("keyup.testWord");  
+};
+
+var gameEnd = function(){
+  console.log("executing game end");
+  clearUp();
+
+  showMessage("You got " + points + " points! (press SPACE to dismiss this message)");
+  $("#game").on("keyup.dismiss", "#translation-field", function(e){
+    $("#translation-field").val('');
+    if (e.which == 32) {
+      e.preventDefault();
+      $("#game").off("keyup.dismiss");
+      initiatePregameShow();
     }
-  };
-  $(document).off("clockEnd").on("clockEnd", gameEnd);
+  });
+  if (points > 0) {
+    $("#game-alerts").removeClass("bg-danger").addClass("bg-success");
+  }
+};
+
+var setupGameEnd = function(){
+  console.log("setting up game end");
+  $("#game").on("clockEnd", gameEnd);
 };
 
 var newRandomWord = function(){
@@ -127,13 +146,13 @@ var displayFinishedWord = function(currentWord, correct){
   }
   var row = '<tr class="my-hidden ' + rowClass + '">' +
     '<td>' + currentWord.text + '</td>' +
-    '<td>' + currentWord.translation + '</td></tr>';
+    '<td>' + currentWord.translations.join(", ") + '</td></tr>';
   $(row).appendTo($('#game-results').find('tbody')).fadeIn();
 }
 
 var changePromptWord = function(){
   currentWord = newRandomWord();
-  $("#word-prompt").text(currentWord.text);
+  $("#word-prompt").text('"Translate: "' + currentWord.text + '"');
 };
 
 var handleInput = function(correct){
@@ -146,7 +165,8 @@ var handleInput = function(correct){
 var runGame = function(){
   changePromptWord();
   $("#game").on("keyup.testWord", "#translation-field", function(e){
-    if ($("#translation-field").val() == currentWord.translation) {
+    var inputWord = $("#translation-field").val().toLowerCase();
+    if ($.inArray(inputWord, currentWord.translations) > -1) {
       handleInput(true);
     } else if (e.which == 13) {
       handleInput(false);
@@ -161,34 +181,51 @@ var forceFocusOnTextField = function(){
   });
 };
 
-var resetGame = function(){
+var clearDisplay = function() {
+  $("#word-prompt").text('');
   $("#game-results").find("tbody").text('');
-  points = 0;
-  currentWord = new Word;
-  usedWords = [];
-  $("#game-play").slideDown();
-  forceFocusOnTextField();
   $("#game-alerts").removeClass("bg-success").addClass("bg-danger");
   showMessage("Press Enter to begin!");
 };
 
+var clearVariables = function() {
+  points = 0;
+  currentWord = new Object;
+  usedWords = [];
+}
+
+var resetGame = function(){
+  pointClockHandUp();
+  resetClock();
+  clearDisplay();
+  clearVariables();
+  
+  $("#game-play").slideDown();
+  forceFocusOnTextField();
+};
+
 var waitForEnter = function(){
-  $("#game").on("keyup.startGame", "#translation-field", function(event){
+  $("#game").off("keyup.testWord");
+  $("#game").on("keypress.startGame", "#translation-field", function(event){
+    event.preventDefault();
     event.stopPropagation();
     $("#translation-field").val('');
     if(event.which == 13) {
-      event.preventDefault();
-      $("#game").off("keyup.startGame");
-      $("#translation-field").val("");
-      showMessage('Enter the translation! (or press Enter to pass)');
-      restartClock();
-      setupGameEnd();
-      runGame();
+      $("#game").off("keypress.startGame").
+        on("keyup.begin", "#translation-field", function(){
+
+        $("#game").off("keyup.begin");
+        $("#translation-field").val("");
+        showMessage('Enter the translation! (or press Enter to pass)');
+        restartClock();
+        setupGameEnd();
+        runGame();
+      });
     }
   });
 };
 
-var playGame = function(){
+var initiatePregameShow = function(){
   resetGame();
   waitForEnter();
 };
@@ -197,7 +234,8 @@ var buttonClickHandler = function(){
   button = $(this);
   if (!button.hasClass("disabled")){
     button.text("RESET");
-    getWordData(playGame);
+    clearUp();
+    getWordData(initiatePregameShow);
   }
 };
 
