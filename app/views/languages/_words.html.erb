@@ -1,23 +1,29 @@
+<!-- Necessary for theme -->
 <div id="outer-background-container" 
-      data-default-background-img="assets/background/china_1.png"
-      style="background-image:url(assets/background/china_1.png);">
+      data-default-background-img="/assets/background/<%= @language.name.downcase %>_<%= @page %>.jpg"
+      style="background-image:url(/assets/background/<%= @language.name.downcase %>_<%= @page %>.jpg);">
 </div>
 
-<div class="display-words">
-  <h2>The most common words in <%= @language.name %> (<%= @first_word_number %> - <%= @last_word_number %>)</h2>
-  
-  <p>Currently on page <%= @page + 1 %></p>
 
-  <div class="words-container">
-    <ol class="word-list" start="<%= @first_word_number %>">
-      <% @words.each do |word| %>
-        <li>
-          <span data-toggle="tooltip" data-placement="right" data-html="true" data-original-title="<%= raw(word.translation) %>"><%= word.word %></span>
-        </li>
-      <% end %>
-    </ol>
-  </div>
-  <img src="/assets/china_1.png">
+
+
+
+        <div class="display-words">
+          <h2>The most common words in <%= @language.name %> (<%= @first_word_number %> - <%= @last_word_number %>)</h2>
+          
+          <p>Currently on page <%= @page + 1 %></p>
+
+          <div class="words-container">
+            <ol class="word-list" start="<%= @first_word_number %>">
+              <% @words.each do |word| %>
+                <li>
+                  <span data-toggle="tooltip" data-placement="right" data-html="true" data-original-title="<%= raw(word.translation) %>"><%= word.word %></span>
+                </li>
+              <% end %>
+            </ol>
+          </div>
+
+
   <% if @page > 0 %>
     <a class="previous-link" href="<%= "/languages/#{@language.id}?page=#{@page - 1}&per_page=#{@per_page}" %>" data-pjax>Previous page</a>
   <% end %>
