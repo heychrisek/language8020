@@ -9,13 +9,16 @@
 </head>
 
 <body>
-  <%= render "layouts/header" %>
+  <%#= render "layouts/header" %>
   
+  <%= render "layouts/theme_nav" %>
+  
+  <section id="main-content" class="clearfix">  
   <div class="container" data-pjax-container>
     
   <%= yield %>
     
   </div>
-
+  </section>
 </body>
 </html>

@@ -39,4 +39,28 @@ body {
 .container {
   max-width: 1000px;
   width: 90%;
+  height: 100%;
+}
+
+.home-bkgd{
+  padding-top: 1000px;
+}
+
+nav{
+  opacity: 0.5
+}
+
+#homepage{
+  margin-top: 80px;
+}
+
+#about{
+  margin-top: 80px;
+}
+
+
+#random-button{
+  margin-top: 100px;
+  position: absolute;
+  left: 20%;
 }

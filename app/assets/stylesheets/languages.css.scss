@@ -25,12 +25,13 @@
 .display-words {
   background-color: rgba(166,153,163,0.4);
   padding: 40px;
-  border-radius: 50px;
+  height: 100%;
 }
 
 #previous-btn{
   font-size: 20px;
   width: 20%;
+  vertical-align: bottom;
 }
 
 #next-btn{
