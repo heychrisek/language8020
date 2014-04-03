@@ -4,14 +4,15 @@
 </div>
 
 <div id="homepage" class="wrap">
-  <h5>Select a language below to get started</h5>
+  <h6>Learn the languages of the world the efficient way: by applying the 80/20 rule. Since 80% of a person's daily conversation is derived from roughly 20% of his or her vocabulary, focusing on the most frequently used words is a helpful approach to learning a foreign language.</h6>
+  <h3>Select a language below to get started</h3>
 
   <%= form_tag "/languages/select", method: 'get' do %>
 
     <%= select_tag "language", options_from_collection_for_select(@languages, "language_code", "name"), prompt: "Choose a language to study", id: "language-dropdown" %>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-    <%= select_tag "per_page", options_for_select([ "10", "25", "50", "100" ]), prompt: "Per page", id: "page-dropdown" %>
+    <%= select_tag "per_page", options_for_select([ "10", "26", "50", "100" ]), prompt: "Per page", id: "page-dropdown" %>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
     <button type="submit" class="btn btn-default">Show me the words!</button>
