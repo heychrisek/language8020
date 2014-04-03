@@ -1,6 +1,6 @@
 class AddTranslationToWords < ActiveRecord::Migration
   def up
-    add_column :words, :translation, :string
+    add_column :words, :translation, :text
   end
 
   def down
