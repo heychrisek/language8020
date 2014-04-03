@@ -8,9 +8,8 @@ $(function () {
     });
 
     function format(language) {
-        if (language.text === "Choose a language to study") return language.text;
+        if (language.id === "") return language.text;
         return '<img src="/assets/flags/' + language.id + '.png"> ' + language.text;
-        // return "<img src='/assets/flags/ad.png'>"
     }
 
     $("#language-dropdown").select2({

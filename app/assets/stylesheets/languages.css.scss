@@ -21,3 +21,17 @@
 #s2id_page-dropdown {
   width: 15%;
 }
+
+#game {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 10px;
+
+  h2 {
+    margin-top: 0;
+  }
+}
+
+#game #s2id_language-dropdown {
+  width: 100%;
+}
