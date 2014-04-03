@@ -21,7 +21,7 @@ Dir.entries("translation_txt_files").select{|file|file.end_with?('.txt')}.
   # end
 end
 
-(1..5347).each do |i|
+(5348..10926).each do |i|
   word = Word.find(i)
   language = word.language
   file = File.open("translation_txt_files/#{language.name.downcase}.txt", "a") do |f|
