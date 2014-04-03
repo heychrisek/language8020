@@ -114,15 +114,20 @@ var gameEnd = function(){
   console.log("executing game end");
   clearUp();
 
-  showMessage("You got " + points + " points! (press SPACE to dismiss this message)");
-  $("#game").on("keyup.dismiss", "#translation-field", function(e){
+  showMessage("You got " + points + " correct words!" +
+    " (press SPACE to reset the game)");
+
+  var resetGame = function(event){
+    event.preventDefault();
+    event.stopPropagation();
     $("#translation-field").val('');
-    if (e.which == 32) {
-      e.preventDefault();
-      $("#game").off("keyup.dismiss");
+    if(event.which == 32) {
+      $("#game").off("keypress.dismiss");
       initiatePregameShow();
     }
-  });
+  };
+  $("#game").on("keypress.dismiss", "#translation-field", resetGame);
+  
   if (points > 0) {
     $("#game-alerts").removeClass("bg-danger").addClass("bg-success");
   }
