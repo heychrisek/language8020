@@ -31,14 +31,15 @@ end
 end
 
 
-# (5348..13954).each do |i|
+# To update
+# (9001..12000).each do |i|
 #   word = Word.find(i)
-#   word.update(:translation => word.translation)
+#   word.update(:translation => word.translate)
 # end
 
 
-
-# (11001..12000).each do |i|
+# To add translations to .txt file
+# (9001..11000).each do |i|
 #   word = Word.find(i)
 #   language = word.language
 #   file = File.open("translation_txt_files/#{language.name.downcase}.txt", "a") do |f|

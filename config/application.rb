@@ -14,7 +14,7 @@ require "sprockets/railtie"
 Bundler.require(*Rails.groups)
 
 # Using this to try to get around heroku error...
-    config.assets.initialize_on_precompile = false
+    # config.assets.initialize_on_precompile = false
 
 
 module Translate
