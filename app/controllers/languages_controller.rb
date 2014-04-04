@@ -42,6 +42,7 @@ class LanguagesController < ApplicationController
       @language = Language.find(params[:id])
       @first_word_number = @page * @per_page + 1
       @last_word_number = @first_word_number + @per_page - 1
+      @last_word_number = 500 if @last_word_number > 500
 
       first_id = @language.words.first.id
       @words = @language.words[(@first_word_number - 1)...@last_word_number]

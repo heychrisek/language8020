@@ -8,27 +8,30 @@
   $($("#outer-background-container").fadeIn(800));
 </script>
 
-
-  <div class="display-words">
+  <div class="display-words clearfix">
     <p id="page-num">Page <%= @page + 1 %>/<%= 500/@per_page %></p>
-    <h2>The most common words in</h2>
-    <h2><%= @language.name %> (<%= @first_word_number %> - <%= @last_word_number %>)</h2>
-    <div class="words-container">
-      <ol class="word-list" start="<%= @first_word_number %>">
-        <% @words.each do |word| %>
-          <li>
-            <span data-toggle="tooltip" data-placement="right" data-html="true" data-original-title="<%= raw(word.translation) %>"><%= word.word %></span>
-          </li>
-        <% end %>
-      </ol>
+      <h2>The most common words in</h2>
+      <h2><%= @language.name %> (<%= @first_word_number %> - <%= @last_word_number %>)</h2>
+    <div style="overflow:auto;height:55%;">
+      <div class="words-container">
+        <ol class="word-list" start="<%= @first_word_number %>">
+          <% @words.each do |word| %>
+            <li>
+              <span data-toggle="tooltip" data-placement="right" data-html="true" data-original-title="<%= raw(word.translation) %>"><%= word.word %></span>
+            </li>
+          <% end %>
+        </ol>
+      </div>
     </div>
 
+    <br>
     <div class="nav-buttons">
       <% if @page > 0 %>
         <a class="previous-link" href="<%= "/languages/#{@language.id}?page=#{@page - 1}&per_page=#{@per_page}" %>" data-pjax><button id="previous-btn" class="btn btn-primary">Previous</button></a>
       <% end %>
-      <% if @page * @per_page + @per_page < 1000 %>
+      <% if @page * @per_page + @per_page < 500 %>
         <a class="next-link" href="<%= "/languages/#{@language.id}?page=#{@page + 1}&per_page=#{@per_page}" %>" data-pjax><button id="next-btn" class="btn btn-primary">Next</button></a>
       <% end %>
     </div>
+    <br>
   </div>
