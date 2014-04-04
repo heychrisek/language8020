@@ -8,10 +8,9 @@
 }
 
 .words-container {
-  columns: 200px 2;
   -webkit-columns: 200px 2;
   -moz-columns: 200px 2;
-
+  columns: 200px 2;
 }
 
 #s2id_index-dropdown {
@@ -43,7 +42,7 @@
 .display-words {
   background-color: rgba(166,153,163,0.6);
   padding: 40px;
-  height: 100%;
+  /*height: 100%;*/
 }
 
 #previous-btn{
@@ -58,8 +57,13 @@
   font-size: 20px;
 }
 
-li {
-  margin-left: 10px
+ol{
+  margin-left: 50px;
+}
+
+ol.word-list li {
+  margin-left: 30px;
+  font-size: 2em;
 }
 
 #page-num{
