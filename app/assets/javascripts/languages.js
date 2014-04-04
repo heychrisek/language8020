@@ -31,16 +31,22 @@ var pjaxSetup = function(){
     });
 };
 
+var checkLanguageSelection = function(){
+  languageCode = $("#s2id_language-dropdown").select2("val");
+  numWords = $($(".select2-chosen")[1]).text();
+  if (languageCode != "" && numWords != "Per page") {
+    $("#show-words").removeClass("disabled");
+  } else {
+    $("#show-words").addClass("disabled");
+  }
+};
+
+var bindLanguageSubmitButton = function(){
+    $("body").on("change", "#homepage", checkLanguageSelection);
+}
+
+
 $(document).ready(function(){
     pjaxSetup();
+    bindLanguageSubmitButton();
 });
-
-// for background image changing
-
-// $.ajax({
-//     url: img-url;
-//     success: function(){
-//         #outer-background-container.fadeOut();
-//         #outer-background-container.fadeIn();
-//     };
-// });
