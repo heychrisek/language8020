@@ -73,9 +73,9 @@ wordGame.checkReadyToLoadWords = function(){
   wordGame.languageCode = $("#s2id_language-dropdown").select2("val");
   wordGame.numWords = $("#num-words").find(":selected").text();
   if (wordGame.languageCode != "") {
-    $("#show-words").removeClass("disabled");
+    $("#game-start-button").removeClass("disabled");
   } else {
-    $("#show-words").addClass("disabled");
+    $("#game-start-button").addClass("disabled");
   }
 };
 
