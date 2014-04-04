@@ -109,6 +109,7 @@ wordGame.clearUpGame = function(){
   wordGame.jGame.off("keypress.startGame");
   wordGame.jGame.off("clockEnd");
   wordGame.jGame.off("keyup.testWord");
+  wordGame.jGame.off("keypress.dismiss");
 };
 
 wordGame.gameReset = function(event){
@@ -122,7 +123,6 @@ wordGame.gameReset = function(event){
 };
 
 wordGame.gameEnd = function(){
-  console.log("executing game end");
   wordGame.clearUpGame();
 
   $("#game").on("keypress.dismiss", "#translation-field", wordGame.gameReset);
@@ -140,7 +140,6 @@ wordGame.gameEnd = function(){
 };
 
 wordGame.setupGameEnd = function(){
-  console.log("setting up game end");
   $("#game").on("clockEnd", wordGame.gameEnd);
 };
 
@@ -151,8 +150,16 @@ wordGame.newRandomWord = function(){
 wordGame.displayFinishedWord = function(currentWord, correct){
   if (correct) {
     wordGame.points++;
+    $("#translation-field").addClass("correct");
+    setTimeout(function(){
+      $("#translation-field").removeClass("correct");
+    },100);
     wordGame.rowClass = "success";
   } else {
+    $("#translation-field").addClass("incorrect")
+    setTimeout(function(){
+      $("#translation-field").removeClass("incorrect");
+    },100);
     wordGame.rowClass = "danger";
   }
   wordGame.newTableRow = '<tr class="my-hidden ' + wordGame.rowClass + '">' +
@@ -236,8 +243,8 @@ wordGame.waitForEnter = function(){
 
 wordGame.initiatePregameShow = function(){
   wordGame.deferred = $.Deferred(wordGame.clearUpGame);
-  wordGame.deferred.then(wordGame.resetGame);
-  wordGame.deferred.then(wordGame.waitForEnter);
+  wordGame.deferred.done(wordGame.resetGame);
+  wordGame.deferred.done(wordGame.waitForEnter);
   wordGame.deferred.resolve();
 };
 
@@ -245,9 +252,7 @@ wordGame.buttonClickHandler = function(){
   button = $(this);
   if (!button.hasClass("disabled")){
     button.text("RESET");
-    wordGame.deferred = $.Deferred(wordGame.clearUpGame);
-    wordGame.deferred.then(wordGame.getWordData(wordGame.initiatePregameShow));
-    wordGame.deferred.resolve();
+    wordGame.getWordData(wordGame.initiatePregameShow);
   }
 };
 
