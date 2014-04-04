@@ -24,10 +24,10 @@
 
     <div class="nav-buttons">
       <% if @page > 0 %>
-        <button id="previous-btn" class="btn btn-primary"><a class="previous-link" href="<%= "/languages/#{@language.id}?page=#{@page - 1}&per_page=#{@per_page}" %>" data-pjax>Previous</a></button>
+        <a class="previous-link" href="<%= "/languages/#{@language.id}?page=#{@page - 1}&per_page=#{@per_page}" %>" data-pjax><button id="previous-btn" class="btn btn-primary">Previous</button></a>
       <% end %>
       <% if @page * @per_page + @per_page < 1000 %>
-        <button id="next-btn" class="btn btn-primary"><a class="next-link" href="<%= "/languages/#{@language.id}?page=#{@page + 1}&per_page=#{@per_page}" %>" data-pjax>Next</a></button>
+        <a class="next-link" href="<%= "/languages/#{@language.id}?page=#{@page + 1}&per_page=#{@per_page}" %>" data-pjax><button id="next-btn" class="btn btn-primary">Next</button></a>
       <% end %>
     </div>
   </div>
