@@ -19,6 +19,8 @@ $(function () {
     });
     
     $("#page-dropdown").select2();
+    
+    $("#nav-language-dropdown").select2();
 });
 
 var pjaxSetup = function(){

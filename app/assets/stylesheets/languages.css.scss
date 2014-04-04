@@ -4,7 +4,7 @@
 
 .tooltip-inner {
   white-space: pre-wrap;
-  font-size: 125%;
+  font-size: 175%;
 }
 
 .words-container {
@@ -39,10 +39,11 @@
 #game #s2id_language-dropdown {
   width: 100%;
 }
+
 .display-words {
   background-color: rgba(166,153,163,0.6);
   padding: 40px;
-  /*height: 100%;*/
+  height: 100%;
 }
 
 #previous-btn{
@@ -72,4 +73,8 @@ ol.word-list li {
 
 .nav-buttons {
   margin-bottom: 20px;
+}
+
+body {
+  padding-bottom: 0px;
 }

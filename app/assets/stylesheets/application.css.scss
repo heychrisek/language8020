@@ -52,6 +52,7 @@ nav{
 
 #homepage{
   margin-top: 80px;
+  /*width: 100%;*/
 }
 
 #about{
@@ -62,5 +63,5 @@ nav{
 #random-button{
   margin-top: 100px;
   position: absolute;
-  left: 20%;
+  float: right;
 }

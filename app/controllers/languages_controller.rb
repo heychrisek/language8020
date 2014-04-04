@@ -1,7 +1,9 @@
 class LanguagesController < ApplicationController
+  before_action :set_languages 
+
   def index
-    @languages = Language.all
     @language = Language.all.sample
+    @home = true
   end
 
   def show
@@ -48,5 +50,9 @@ class LanguagesController < ApplicationController
       @words = @language.words[(@first_word_number - 1)...@last_word_number]
 
       redirect_to @language unless @words
+    end
+
+    def set_languages
+      @languages = Language.all
     end
 end
