@@ -105,19 +105,16 @@ var showMessage = function(message){
 }
 
 var clearUp = function(){
-  $("#game").off("keyup.dismiss");
+  $("#game").off("keypress.startGame");
   $("#game").off("clockEnd");
-  $("#game").off("keyup.testWord");  
+  $("#game").off("keyup.testWord");
 };
 
 var gameEnd = function(){
   console.log("executing game end");
   clearUp();
 
-  showMessage("You got " + points + " correct words!" +
-    " (press SPACE to reset the game)");
-
-  var resetGame = function(event){
+  var reset = function(event){
     event.preventDefault();
     event.stopPropagation();
     $("#translation-field").val('');
@@ -126,10 +123,16 @@ var gameEnd = function(){
       initiatePregameShow();
     }
   };
-  $("#game").on("keypress.dismiss", "#translation-field", resetGame);
+  $("#game").on("keypress.dismiss", "#translation-field", reset);
   
   if (points > 0) {
     $("#game-alerts").removeClass("bg-danger").addClass("bg-success");
+    wordOrWords = "word";
+    if (points > 1) wordOrWords = "words";
+    showMessage("You got " + points + " correct " + wordOrWords + "! " +
+      "(press SPACE to reset the game)");
+  } else {
+    showMessage("No correct words this time... (press SPACE to reset the game)");
   }
 };
 
@@ -190,7 +193,7 @@ var clearDisplay = function() {
   $("#word-prompt").text('');
   $("#game-results").find("tbody").text('');
   $("#game-alerts").removeClass("bg-success").addClass("bg-danger");
-  showMessage("Press Enter to begin!");
+  showMessage("Press ENTER to begin!");
 };
 
 var clearVariables = function() {
@@ -200,7 +203,6 @@ var clearVariables = function() {
 }
 
 var resetGame = function(){
-  pointClockHandUp();
   resetClock();
   clearDisplay();
   clearVariables();
@@ -210,7 +212,6 @@ var resetGame = function(){
 };
 
 var waitForEnter = function(){
-  $("#game").off("keyup.testWord");
   $("#game").on("keypress.startGame", "#translation-field", function(event){
     event.preventDefault();
     event.stopPropagation();
@@ -221,7 +222,7 @@ var waitForEnter = function(){
 
         $("#game").off("keyup.begin");
         $("#translation-field").val("");
-        showMessage('Enter the translation! (or press Enter to pass)');
+        showMessage('Enter the translation! (or press ENTER to pass)');
         restartClock();
         setupGameEnd();
         runGame();
@@ -231,16 +232,19 @@ var waitForEnter = function(){
 };
 
 var initiatePregameShow = function(){
-  resetGame();
-  waitForEnter();
+  deferred = $.Deferred(clearUp);
+  deferred.then(resetGame);
+  deferred.then(waitForEnter);
+  deferred.resolve();
 };
 
 var buttonClickHandler = function(){
   button = $(this);
   if (!button.hasClass("disabled")){
     button.text("RESET");
-    clearUp();
-    getWordData(initiatePregameShow);
+    deferred = $.Deferred(clearUp);
+    deferred.then(getWordData(initiatePregameShow));
+    deferred.resolve();
   }
 };
 
