@@ -33,8 +33,6 @@ $(document).ready(function(){
     pjaxSetup();
 });
 
-
-
 // for background image changing
 
 // $.ajax({
