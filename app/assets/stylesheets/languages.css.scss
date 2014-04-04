@@ -26,6 +26,19 @@
   width: 15%;
 }
 
+#game {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 10px;
+
+  h2 {
+    margin-top: 0;
+  }
+}
+
+#game #s2id_language-dropdown {
+  width: 100%;
+}
 .display-words {
   background-color: rgba(166,153,163,0.4);
   padding: 40px;
@@ -43,6 +56,15 @@
   width: 20%;
   font-size: 20px;
 }
+
+.previous-link{
+  padding: 10px 42px;
+}
+
+.next-link{
+  padding: 10px 60px;
+}
+
 
 li {
   margin-left: 10px

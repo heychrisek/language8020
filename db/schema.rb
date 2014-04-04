@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140401212210) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "language_id"
-    t.string   "translation"
+    t.text     "translation"
   end
 
 end

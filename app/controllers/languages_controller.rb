@@ -19,6 +19,19 @@ class LanguagesController < ApplicationController
     redirect_to "/languages/#{language_id}?per_page=10"
   end
 
+  def game
+    @languages = Language.all
+  end
+
+  def get_word_data
+    language_code = params[:language_code]
+    num_words = params[:num_words]
+    words = Language.find_by(language_code: language_code).words.first(num_words)
+    respond_to do |format|
+      format.json {render json: words, status: 200}
+    end
+  end
+
   private
     def get_set_of_words
       params[:page] ||= 0
