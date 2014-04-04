@@ -7,11 +7,12 @@
   <div id="mobile-menu-icon" class="visible-xs" onClick="toggle_main_menu();"><span class="glyphicon glyphicon-th"></span></div>
 
   <ul id="main-menu">
-    <li id="menu-item-text" class="menu-item scroll"><a href="/about">About</a></li>
-    <li id="menu-item-carousel" class="menu-item scroll"><a href="/team">Team</a></li>
-    <li id="menu-item-grid" class="menu-item scroll"><a href="/game">Game</a></li>
+    <li class="menu-item scroll"><a href="/about">About</a></li>
+    <li class="menu-item scroll"><a href="/team">Team</a></li>
+    <li class="menu-item scroll"><a href="/game">Game</a></li>
+    <li class="menu-item scroll"><a href="/languages/random">Random language</a></li>
     <% unless @home %>
-    <li id="menu-item-grid" class="menu-item scroll"><a href="/">Select another language</a>
+    <li class="menu-item scroll"><a href="/">Select another language</a>
       <%#= form_tag "/languages/select", method: 'get' do %>
       <%#= select_tag "language", options_from_collection_for_select(@languages, "language_code", "name"), prompt: "Choose a language to study", id: "nav-language-dropdown" %>
       <%# end %>

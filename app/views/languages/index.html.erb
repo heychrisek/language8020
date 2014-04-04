@@ -3,8 +3,10 @@
       style="background-image:url(/assets/background/globe.jpg)">
 </div>
 
-<div id="homepage" class="wrap display-words clearfix">
+<div id="homepage" class="wrap">
+  <div class=" display-words clearfix">
   <h6>Learn the languages of the world the efficient way: by applying the 80/20 rule. Since 80% of a person's daily conversation is derived from roughly 20% of his or her vocabulary, focusing on the most frequently used words is a helpful approach to learning a foreign language.</h6>
+
   <h3>Select a language below to get started</h3>
 
   <%= form_tag "/languages/select", method: 'get' do %>
@@ -17,11 +19,10 @@
 
     <button type="submit" class="btn btn-default">Show me the words!</button>
   <% end %> 
-
-
-
-  <%= form_tag "languages/random", method: 'get' do %>
-    <button id="random-button" type="submit" class="btn btn-default"><h4>I'm feeling lucky!</h4><br>(Random words in a random language)</button>
-  <% end %>
-
+    <button id="random-button" type="submit" class="btn btn-default">
+      <%= form_tag "languages/random", method: 'get' do %>
+      <h4>I'm feeling lucky!</h4><br>(Random words in a random language)
+      <% end %>
+    </button>
+    <div>
 </div>
