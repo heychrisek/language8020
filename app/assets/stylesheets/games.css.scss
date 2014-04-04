@@ -13,3 +13,23 @@
   color: black;
   font-weight: bold;
 }
+
+#word-prompt {
+  background: yellow;
+}
+
+#translation-field {
+  transition:.05s linear;
+  -webkit-transition:.05s linear;
+  -moz-transition:.05s linear;
+}
+
+#translation-field.incorrect {
+  border-color:#FF0000;
+  box-shadow:0 0 20px 10px rgba(100, 0, 0, 0.5), 0 0 20px 20px rgba(100, 0, 0, 0.5) inset;
+}
+
+#translation-field.correct {
+  border-color:#00FF00;
+  box-shadow:0 0 20px 10px rgba(0, 100, 0, 0.5), 0 0 20px 20px rgba(0, 100, 0, 0.5) inset;
+}
