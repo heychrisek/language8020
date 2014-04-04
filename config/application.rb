@@ -13,12 +13,6 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-
-# Using this to try to get around heroku error...
-    # config.assets.initialize_on_precompile = false
-
-
-
 module Translate
   class Application < Rails::Application
     # Using this to try to get around heroku error...
