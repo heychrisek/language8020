@@ -26,10 +26,10 @@
 
 #translation-field.incorrect {
   border-color:#FF0000;
-  box-shadow:0 0 20px 10px rgba(100, 0, 0, 0.5), 0 0 20px 20px rgba(100, 0, 0, 0.5) inset;
+  box-shadow:0 0 20px 10px rgba(80, 0, 0, 0.5), 0 0 20px 20px rgba(100, 0, 0, 0.4) inset;
 }
 
 #translation-field.correct {
   border-color:#00FF00;
-  box-shadow:0 0 20px 10px rgba(0, 100, 0, 0.5), 0 0 20px 20px rgba(0, 100, 0, 0.5) inset;
+  box-shadow:0 0 20px 10px rgba(0, 80, 0, 0.5), 0 0 20px 20px rgba(0, 100, 0, 0.4) inset;
 }

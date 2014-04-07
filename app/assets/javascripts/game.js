@@ -59,15 +59,14 @@ wordGame.resetClock = function(){
 }
 
 wordGame.restartClock = function(){
-  wordGame.stopClock();
-  wordGame.pointClockHandUp();
-  wordGame.updateClock();
+  wordGame.resetClock();
   wordGame.clockUpdaterID = setInterval("wordGame.updateClock()",1000);
 };
 
 // AJAX CALLS FOR FETCHING WORDS AND TRANSLATIONS
 wordGame.numWords = "200";
 wordGame.gameWords = [];
+wordGame.usedWords = [];
 
 wordGame.checkReadyToLoadWords = function(){
   wordGame.languageCode = $("#s2id_language-dropdown").select2("val");
@@ -87,7 +86,8 @@ wordGame.failureToLoadGameWords = function() {
 
 wordGame.getWordData = function(callback){
   wordGame.gameWords.length = 0;
-  wordGame.params = "?language_code=" + wordGame.languageCode + "&num_words=" + wordGame.numWords;
+  wordGame.params = "?language_code=" + wordGame.languageCode +
+    "&num_words=" + wordGame.numWords;
   $.getJSON("/game/words" + wordGame.params, function(response){
     $.each(response, function(index, word){
       wordGame.gameWords.push(new Word(word.word, word.translation));
@@ -105,11 +105,11 @@ wordGame.showGameMessage = function(message){
 }
 
 wordGame.clearUpGame = function(){
-  wordGame.jGame = $("#game");
-  wordGame.jGame.off("keypress.startGame");
-  wordGame.jGame.off("clockEnd");
-  wordGame.jGame.off("keyup.testWord");
-  wordGame.jGame.off("keypress.dismiss");
+  $game = $("#game");
+  $game.off("keypress.startGame");
+  $game.off("clockEnd");
+  $game.off("keyup.testWord");
+  $game.off("keypress.dismiss");
 };
 
 wordGame.gameReset = function(event){
@@ -129,14 +129,15 @@ wordGame.gameEnd = function(){
   
   if (wordGame.points > 0) {
     $("#game-alerts").removeClass("bg-danger").addClass("bg-success");
-    wordGame.wordOrWords = "word";
-    if (wordGame.points > 1) wordGame.wordOrWords = "words";
-    wordGame.showGameMessage("You got " + wordGame.points + " correct " +
-      wordGame.wordOrWords + "! (press SPACE to reset the game)");
+    var wordOrWords = "word";
+    if (wordGame.points > 1) wordOrWords += "s";
+    var endGameMessage = "You got " + wordGame.points + " correct " +
+      wordOrWords + "!";
   } else {
-    wordGame.showGameMessage("No correct words this time... " +
-      "(press SPACE to reset the game)");
+    var endGameMessage = "No correct words this time... "
   }
+
+  wordGame.showGameMessage(endGameMessage+" (press SPACE to reset the game)");
 };
 
 wordGame.setupGameEnd = function(){
@@ -144,38 +145,58 @@ wordGame.setupGameEnd = function(){
 };
 
 wordGame.newRandomWord = function(){
-  return wordGame.gameWords[Math.floor(Math.random()*wordGame.gameWords.length)];
+  if (wordGame.gameWords.length == 0) {
+    wordGame.gameWords = wordGame.usedWords.splice(0, wordGame.usedWords.length);
+    console.log("gameWords", wordGame.gameWords);
+    console.log("usedWords", wordGame.usedWords);
+  }
+  var nextWordNum = Math.floor(Math.random()*wordGame.gameWords.length);
+  var nextWord = wordGame.gameWords.splice(nextWordNum, 1)[0];
+  wordGame.usedWords.push(nextWord);
+  return nextWord;
 };
 
 wordGame.displayFinishedWord = function(currentWord, correct){
+  var $tf = $("#translation-field");
+  $tf.on("keypress.alreadyEntered", function(e){
+    e.preventDefault();
+  });
+  
+  var addAndRemoveClass = function(tempClass){
+    $tf.addClass(tempClass);
+    setTimeout(function(){
+      $tf.removeClass(tempClass);
+      $tf.val('');
+      $tf.off("keypress.alreadyEntered");
+    },170);
+  };
+  
+  var appendGameRow = function(rowClass) {
+    wordGame.newTableRow = '<tr class="my-hidden ' + rowClass + '">' +
+      '<td>' + currentWord.text + '</td>' +
+      '<td>' + currentWord.translations.join(", ") + '</td></tr>';
+    $(wordGame.newTableRow).appendTo($('#game-results').find('tbody')).fadeIn();
+  };
+
+  var resolveWord = function(tempClass, rowClass){
+    addAndRemoveClass(tempClass);
+    appendGameRow(rowClass);
+  };
+
   if (correct) {
     wordGame.points++;
-    $("#translation-field").addClass("correct");
-    setTimeout(function(){
-      $("#translation-field").removeClass("correct");
-    },100);
-    wordGame.rowClass = "success";
+    resolveWord("correct", "success");
   } else {
-    $("#translation-field").addClass("incorrect")
-    setTimeout(function(){
-      $("#translation-field").removeClass("incorrect");
-    },100);
-    wordGame.rowClass = "danger";
+    resolveWord("incorrect", "danger");
   }
-  wordGame.newTableRow = '<tr class="my-hidden ' + wordGame.rowClass + '">' +
-    '<td>' + currentWord.text + '</td>' +
-    '<td>' + currentWord.translations.join(", ") + '</td></tr>';
-  $(wordGame.newTableRow).appendTo($('#game-results').find('tbody')).fadeIn();
 }
 
 wordGame.changePromptWord = function(){
   wordGame.currentWord = wordGame.newRandomWord();
-  $("#word-prompt").text('"Translate: "' + wordGame.currentWord.text + '"');
+  $("#word-prompt").text('Translate: "' + wordGame.currentWord.text + '"');
 };
 
 wordGame.handleUserInputtingTranslation = function(correct){
-  $("#translation-field").val('');
-  wordGame.usedWords.push(wordGame.currentWord);
   wordGame.displayFinishedWord(wordGame.currentWord, correct);
   wordGame.changePromptWord();
 };
@@ -186,16 +207,18 @@ wordGame.runGame = function(){
     wordGame.inputWord = $("#translation-field").val().toLowerCase();
     if ($.inArray(wordGame.inputWord, wordGame.currentWord.translations) > -1) {
       wordGame.handleUserInputtingTranslation(true);
-    } else if (e.which == 13) {
+    } else if (e.which == 27) {
+      e.preventDefault();
       wordGame.handleUserInputtingTranslation(false);
     }
   });
 };
 
 wordGame.forceFocusOnTextField = function(){
-  $("#translation-field").focus();
-  $("#translation-field").off("blur").blur(function(){
-    $("#translation-field").focus();
+  var $tf = $("#translation-field");
+  $tf.focus();
+  $tf.off("blur").blur(function(){
+    $tf.focus();
   });
 };
 
@@ -209,7 +232,7 @@ wordGame.clearDisplay = function() {
 wordGame.clearGameVariables = function() {
   wordGame.points = 0;
   wordGame.currentWord = new Object;
-  wordGame.usedWords = [];
+  wordGame.usedWords.length = 0;
 }
 
 wordGame.resetGame = function(){
@@ -232,7 +255,7 @@ wordGame.waitForEnter = function(){
 
         $("#game").off("keyup.begin");
         $("#translation-field").val("");
-        wordGame.showGameMessage('Enter the translation! (or press ENTER to pass)');
+        wordGame.showGameMessage('Enter the translation! (or press ESC to pass)');
         wordGame.restartClock();
         wordGame.setupGameEnd();
         wordGame.runGame();
