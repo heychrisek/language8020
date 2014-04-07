@@ -17,7 +17,7 @@
     <%= select_tag "per_page", options_for_select([ "10", "25", "50", "100" ]), prompt: "Per page", id: "page-dropdown" %>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-    <button type="submit" class="btn btn-default">Show me the words!</button>
+    <button id="show-words" type="submit" class="disabled btn btn-default">Show me the words!</button>
   <% end %> 
     <div>
 </div>
