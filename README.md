@@ -5,7 +5,7 @@
 
 ## Description
 
-Learn the languages of the world the efficient way: by applying the 80/20 rule. Since 80% of a person's daily conversation is derived from roughly 20% of his or her vocabulary, focusing on the most frequently used words is a helpful approach to learning a foreign language.
+[Language 80/20](http://language-80-20.herokuapp.com/) makes learning a foreign languages more efficient by applying the 80/20 rule. Since 80% of a person's daily conversation is derived from roughly 20% of his or her vocabulary, focusing on the most frequently used words is a helpful approach to learning a foreign language.
 
 ## Screenshots
 
