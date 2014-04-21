@@ -7,3 +7,7 @@ script:
   - RAILS_ENV=test bundle exec rake
   - CODECLIMATE_REPO_TOKEN=bf57840f6365c86d594477060615d18f0fc297eb733c29661c4e174326a66709 bundle exec rake
 cache: bundler
+
+addons:
+  code_climate:
+    repo_token: bf57840f6365c86d594477060615d18f0fc297eb733c29661c4e174326a66709
