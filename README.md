@@ -13,8 +13,8 @@
 ## Screenshots
 
 [![](/app/assets/images/homepage.png "Homepage")](http://language-80-20.herokuapp.com/)
-[![](/app/assets/images/language-page.png "Language Page")](http://language-80-20.herokuapp.com/)
-[![](/app/assets/images/game.png "Game")](http://language-80-20.herokuapp.com/)
+[![](/app/assets/images/language-page.png "Language Page")](http://language-80-20.herokuapp.com/languages/11?page=5&per_page=25)
+[![](/app/assets/images/game.png "Game")](http://language-80-20.herokuapp.com/game)
 
 
 ## Features
