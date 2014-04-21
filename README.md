@@ -17,13 +17,13 @@ Learn the languages of the world the efficient way: by applying the 80/20 rule. 
 ## Features
 
 - Frequency lists of foreign language vocabulary for 12 languages.
-- Ajax (for faster page loads_ and [Pjax](https://github.com/defunkt/jquery-pjax) (to maintain permalinking and bookmarking).
+- Ajax (for faster page loads) and [Pjax](https://github.com/defunkt/jquery-pjax) (to maintain permalinking and bookmarking).
 - Google translations for each word appear in real-time on mouseover.
 - JavaScript game to test foreign language knowledge.
 
 ## Usage
 
-Visit and explore Language 80/20(http://language-80-20.herokuapp.com/)!
+Visit and explore [Language 80/20](http://language-80-20.herokuapp.com/)!
 
 ## Development/Contribution
 
