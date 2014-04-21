@@ -25,4 +25,24 @@ describe "Languages controller" do
       expect(page).to have_text("#{Word.first.word}")
     end
   end
+
+  describe "random language page" do
+    it "redirects to a language show page" do
+      visit languages_path
+      click_link("Random language")
+      expect(page).to have_text("#{Language.first.name}")
+      expect(page).to have_text("#{Word.first.word}")
+    end
+  end
+
+  describe "game" do
+    it "renders the game" do
+      visit game_path
+      expect(page).to have_text("Test your knowledge!")
+    end
+
+    it "gets words for a game in a given language" do
+      # Test languages_controller's get_set_of_words method
+    end
+  end
 end
