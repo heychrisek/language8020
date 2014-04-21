@@ -1,3 +1,4 @@
+[![Language 80/20](/app/assets/images/logo.png)](http://language-80-20.herokuapp.com/)
 # Language 80/20
 [![Build Status](https://travis-ci.org/chriskohlbrenner/language8020.png)](https://travis-ci.org/chriskohlbrenner/language8020)
 [![Coverage Status](https://coveralls.io/repos/chriskohlbrenner/language8020/badge.png?branch=master)](https://coveralls.io/r/chriskohlbrenner/language8020?branch=master)
@@ -8,7 +9,8 @@ Add a short description of your app.
 
 ## Screenshots
 
-Add some spiffy screenshots of your app here.
+[![](/app/assets/images/homepage.png "Homepage")](http://language-80-20.herokuapp.com/)
+[![](/app/assets/images/language-page.png "Language Page")](http://language-80-20.herokuapp.com/)
 
 ## Background
 
