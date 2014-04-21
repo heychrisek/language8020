@@ -40,10 +40,9 @@ What features are you currently working on? Only mention things that you
 actually are implementing. No pie-in-the-sky-never-gonna-happen stuff.
 Coming soon...
 
-## Author
+## Authors
 
-Link to your blog, twitter, etc!
-Coming soon...
+Language 80/20 was built by [Chris Kohlbrenner](https://github.com/chriskohlbrenner), [Jisu Kim](https://github.com/JisuKim82), and [Ariel Caplan](https://github.com/amcaplan) as students at the [Flatiron School](http://flatironschool.com/) in New York.
 
 ## License
-[MIT License](https://github.com/chriskohlbrenner/blob/master/LICENSE). Copyright 2014 Chris Kohlbrenner, Jisu Kim, and Ariel Caplan.
+[MIT License](https://github.com/chriskohlbrenner/language8020/blob/master/LICENSE). Copyright 2014 Chris Kohlbrenner, Jisu Kim, and Ariel Caplan.
