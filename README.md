@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/chriskohlbrenner/language8020.png)](https://travis-ci.org/chriskohlbrenner/language8020)
 [![Coverage Status](https://coveralls.io/repos/chriskohlbrenner/language8020/badge.png?branch=master)](https://coveralls.io/r/chriskohlbrenner/language8020?branch=master)
 [![Code Climate](https://codeclimate.com/github/chriskohlbrenner/language8020.png)](https://codeclimate.com/github/chriskohlbrenner/language8020)
+[![Dependency Status](https://gemnasium.com/chriskohlbrenner/language8020.svg)](https://gemnasium.com/chriskohlbrenner/language8020)
+
 
 ## Description
 
