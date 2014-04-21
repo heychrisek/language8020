@@ -1,6 +1,12 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :language do
+    name "French"
+    language_code "fr"
+  end
+
+  factory :word do
+    sequence(:word) { |n| "boulangerie#{n}" }
+    language_id 1
+    translation "bakery"
   end
 end
