@@ -5,11 +5,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'simplecov'
 require 'coveralls'
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-  SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter
-]
-
+Coveralls.wear!
 SimpleCov.start 'rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
