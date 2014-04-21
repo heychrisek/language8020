@@ -13,32 +13,21 @@ Learn the languages of the world the efficient way: by applying the 80/20 rule. 
 [![](/app/assets/images/language-page.png "Language Page")](http://language-80-20.herokuapp.com/)
 [![](/app/assets/images/game.png "Game")](http://language-80-20.herokuapp.com/)
 
-## Background
-
-Why did you want to make this app? What was your development process like?
-Coming soon...
 
 ## Features
 
-Bullet point some of the key features of your app here.
-Coming soon...
+- Frequency lists of foreign language vocabulary for 12 languages.
+- Ajax (for faster page loads_ and [Pjax](https://github.com/defunkt/jquery-pjax) (to maintain permalinking and bookmarking).
+- Google translations for each word appear in real-time on mouseover.
+- JavaScript game to test foreign language knowledge.
 
 ## Usage
 
-How do users use your app?
-Coming soon...
+Visit and explore Language 80/20(http://language-80-20.herokuapp.com/)!
 
 ## Development/Contribution
 
-Explain how people can contribute to your app. How should they write tests?
-Any things in particular you'd like to see in pull requests?
-Coming soon...
-
-## Future
-
-What features are you currently working on? Only mention things that you
-actually are implementing. No pie-in-the-sky-never-gonna-happen stuff.
-Coming soon...
+Feel free to submit issues and pull requests! We only ask that you ensure tests are still passing.
 
 ## Authors
 
