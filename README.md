@@ -1,5 +1,5 @@
 # Language 80/20
-[![Build Status](https://travis-ci.org/chriskohlbrenner/Language8020.png)](https://travis-ci.org/chriskohlbrenner/Language8020)
+[![Build Status](https://travis-ci.org/chriskohlbrenner/language8020.png)](https://travis-ci.org/chriskohlbrenner/language8020)
 [![Coverage Status](https://coveralls.io/repos/chriskohlbrenner/Language8020/badge.png?branch=master)](https://coveralls.io/r/chriskohlbrenner/Language8020?branch=master)
 
 ## Description
