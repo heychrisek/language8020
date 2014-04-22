@@ -26,6 +26,15 @@ describe "Languages controller" do
     end
   end
 
+  describe "show language after redirect" do
+    it "includes language selected" do
+      visit choose_language_path(1)
+      visit("/languages/1?per_page=25")
+      expect(page).to have_text("#{Language.first.name}")
+      expect(page).to have_text("#{Word.first.word}")
+    end
+  end
+
   describe "random language page" do
     it "redirects to a language show page" do
       visit languages_path
@@ -39,6 +48,10 @@ describe "Languages controller" do
     it "renders the game" do
       visit game_path
       expect(page).to have_text("Test your knowledge!")
+    end
+
+    it "routes correctly to GET #get_word_data" do
+      visit game_words_path
     end
 
     it "gets words for a game in a given language" do
